@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
+import { Box,  Typography } from '@material-ui/core';
+import FadeIn from 'react-fade-in';
 
 const SignUp = () => {
     return (
-        <Box>
-            Sign up
-        </Box>
+        <FadeIn>
+            <Typography variant="h4">Sign up</Typography>
+            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate est nec maximus gravida. Cras ultricies eros lacus, at condimentum justo molestie vitae. Phasellus ac magna felis. In vehicula euismod leo non scelerisque. Ut at diam turpis. In sollicitudin, lectus in porttitor ullamcorper, augue lacus efficitur lacus, sed ultricies augue massa in est</Typography>
+        </FadeIn>
     )
 }
 
