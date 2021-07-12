@@ -6,7 +6,8 @@ const SignUp = () => {
     return (
         <FadeIn>
             <Typography variant="h4">Sign up</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate est nec maximus gravida. Cras ultricies eros lacus, at condimentum justo molestie vitae. Phasellus ac magna felis. In vehicula euismod leo non scelerisque. Ut at diam turpis. In sollicitudin, lectus in porttitor ullamcorper, augue lacus efficitur lacus, sed ultricies augue massa in est</Typography>
+            <Typography variant="body1">We appreciate you taking interest in learning about the world of wines.</Typography>
+            <Typography variant="body1">Your door to knowledge and community is just a small sign-up away!</Typography>
         </FadeIn>
     )
 }

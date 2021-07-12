@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import "./styles/styles.scss";
-import { Container } from '@material-ui/core';
+import { Container, Box } from '@material-ui/core';
 import Navigation from './components/Navigation';
 import Welcome from './components/Welcome';
 import About from './components/About';
@@ -14,15 +14,17 @@ const App = () => {
     const displayValue = useMemo(() => ({ display, setDisplay }));
 
     return (
-        <Container maxWidth="sm">
-            <DisplayContext.Provider value={displayValue}>
-                {display === 1 && <Welcome />}
-                {display === 2 && <About />}
-                {display === 3 && <SignUp />}
-                {display === 4 && <Contact />}
-                <Navigation />
-            </DisplayContext.Provider>
-        </Container>
+        <DisplayContext.Provider value={displayValue}>
+            <Navigation />
+            <Container maxWidth="sm">
+                <Box className="content">
+                    {display === 1 && <Welcome />}
+                    {display === 2 && <About />}
+                    {display === 3 && <SignUp />}
+                    {display === 4 && <Contact />}
+                </Box>
+            </Container>
+        </DisplayContext.Provider>
     )
 }
 

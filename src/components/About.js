@@ -6,7 +6,10 @@ const About = () => {
     return (
         <FadeIn>
             <Typography variant="h4">About</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate est nec maximus gravida. Cras ultricies eros lacus, at condimentum justo molestie vitae. Phasellus ac magna felis. In vehicula euismod leo non scelerisque. Ut at diam turpis. In sollicitudin, lectus in porttitor ullamcorper, augue lacus efficitur lacus, sed ultricies augue massa in est</Typography>
+            <Typography variant="body1">Wine for All© is an Aarhus-based wine tasting innitiative led by Luísa Teixeira, started in 2020.
+                Our goal is to make the knowledge of wine available to the public at a reasonable price.
+                The tastings will be hosted at the youth house of Aarhus (Ungdomskulturhuset), located in the center of Aarhus and great place to meet new people
+            </Typography>
         </FadeIn>
     )
 }

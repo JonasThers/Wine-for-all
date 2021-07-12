@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { DisplayContext } from './DisplayContext';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 const Navigation = () => {
 
@@ -26,15 +26,16 @@ const Navigation = () => {
     ];
 
     return (
-        <Grid>
+        <Grid className="navigation">
             {links.map((link, index) => {
                 return (
-                    <Box
+                    <Typography
+                        variant="h5"
                         key={index}
                         onClick={() => setDisplay(link.value)}
                     >
                         {link.name}
-                    </Box>
+                    </Typography>
                 );
             })}
         </Grid>

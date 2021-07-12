@@ -6,7 +6,9 @@ const Contact = () => {
     return (
         <FadeIn>
             <Typography variant="h4">Contact</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate est nec maximus gravida. Cras ultricies eros lacus, at condimentum justo molestie vitae. Phasellus ac magna felis. In vehicula euismod leo non scelerisque. Ut at diam turpis. In sollicitudin, lectus in porttitor ullamcorper, augue lacus efficitur lacus, sed ultricies augue massa in est</Typography>
+            <Typography variant="body1">For enquiries, booking and additional questions
+                feel free to contact us at:</Typography>
+            <Typography variant="body1">wineforall.aarhus@gmail.com</Typography>
         </FadeIn>
     )
 }
