@@ -10,13 +10,38 @@ body {
 }
 
 .navigation {
-    position: absolute;
-    right: 15%;
-    top: 50%;
-    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: map-get($spacing-unit, 'small');
 
-    * {
-        cursor: pointer;
-        font-family: 'Dosis', sans-serif;
+    h5 {
+        margin: 0 10px 10px 10px;
     }
 }
+
+@media (min-width:1025px) {
+    .navigation {
+        flex-direction: column;
+        position: fixed;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+    
+        h5 {
+            cursor: pointer;
+        }
+    }
+    
+    .content {
+        position: absolute;
+        top: 38%;
+        max-width: 600px;
+    }
+}
+
+@media (min-width:1281px) { 
+    .navigation {
+        right: 15%;
+    }
+ }
