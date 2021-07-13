@@ -1,6 +1,8 @@
 import React from 'react';
 import { Typography, Button, Grid, Box } from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import { FaFacebookF } from 'react-icons/fa';
+import { SiInstagram } from 'react-icons/si'
 
 const Welcome = () => {
     return (
@@ -19,13 +21,14 @@ const Welcome = () => {
                     color="primary"
                     href="https://www.facebook.com/wineforallaarhus"
                 >
-                    <Box component="i" marginRight=".5rem" className="fab fa-facebook" />
+                    <FaFacebookF />
                 </Button>
                 <Button
                     variant="contained"
                     href="https://www.instagram.com/wineforall_aarhus/"
+                    className="ig"
                 >
-                    Link
+                    <SiInstagram />
                 </Button>
             </Grid>
         </FadeIn>

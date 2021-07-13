@@ -1,47 +1,60 @@
 @import "./maps/maps";
 
 * {
-    font-family: 'Dosis', sans-serif !important;
+  font-family: "Dosis", sans-serif !important;
 }
 
 body {
-    background: map-get($colors, 'black');
-    color: map-get($colors, 'white');
+  background: map-get($colors, "black");
+  color: map-get($colors, "white");
 }
 
 .navigation {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: map-get($spacing-unit, 'small');
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: map-get($spacing-unit, "small");
+
+  h5 {
+    margin: 0 10px 10px 10px;
+  }
+}
+
+.ig {
+  margin-left: 1em !important;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 255, 0, 1) 0%,
+    rgba(255, 132, 0, 1) 15%,
+    rgba(255, 0, 0, 1) 30%,
+    rgba(155, 0, 255, 1) 60%,
+    rgba(0, 82, 255, 1) 100%
+  );
+  color: map-get($colors, "white") !important;
+}
+
+@media (min-width: 1025px) {
+  .navigation {
+    flex-direction: column;
+    position: fixed;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
 
     h5 {
-        margin: 0 10px 10px 10px;
+      cursor: pointer;
     }
+  }
+
+  .content {
+    position: absolute;
+    top: 38%;
+    max-width: 600px;
+  }
 }
 
-@media (min-width:1025px) {
-    .navigation {
-        flex-direction: column;
-        position: fixed;
-        right: 10%;
-        top: 50%;
-        transform: translateY(-50%);
-    
-        h5 {
-            cursor: pointer;
-        }
-    }
-    
-    .content {
-        position: absolute;
-        top: 38%;
-        max-width: 600px;
-    }
+@media (min-width: 1281px) {
+  .navigation {
+    right: 15%;
+  }
 }
-
-@media (min-width:1281px) { 
-    .navigation {
-        right: 15%;
-    }
- }
