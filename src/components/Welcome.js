@@ -5,6 +5,7 @@ import { FaFacebookF } from 'react-icons/fa';
 import { SiInstagram } from 'react-icons/si'
 
 const Welcome = () => {
+    
     return (
         <FadeIn>
             <Box mb={2}>

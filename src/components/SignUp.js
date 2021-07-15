@@ -1,8 +1,97 @@
-import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Box, Typography, TextField, makeStyles, FormLabel, RadioGroup, FormControlLabel, Radio, MenuItem, Select, InputLabel, Button } from '@material-ui/core';
 import FadeIn from 'react-fade-in';
+import emailjs from 'emailjs-com';
+
+const useStyles = makeStyles((theme) => ({
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        color: 'white',
+    },
+    label: {
+        color: 'white',
+        marginTop: 30,
+        marginBottom: 10
+    },
+    input: {
+        marginTop: 10,
+        width: '25ch',
+        borderBottom: '1px solid white',
+    },
+    inputText: {
+        color: 'white'
+    },
+    radio: {
+        color: 'white',
+    },
+    select: {
+        background: 'white',
+        color: 'black',
+        marginTop: 10,
+        marginBottom: 20,
+        width: '25ch',
+        borderBottom: 'none',
+        paddingLeft: 10,
+    },
+    button: {
+        background: 'white',
+        marginTop: 20,
+        marginBottom: 30,
+        width: '12.5ch',
+        '&:hover': {
+            background: 'white'
+        }
+    },
+    message: {
+        height: 20,
+        marginBottom: 30
+    }
+}));
 
 const SignUp = () => {
+
+    const classes = useStyles();
+
+    const [attend, setAttended] = useState('');
+    const [ageLimit, setAgeLimit] = useState('');
+    const [open, setOpen] = useState(false);
+    const [heardBefore, setHeardBefore] = useState('');
+    const [formMessage, setFormMessage] = useState('')
+
+    const handleAttend = (event) => {
+        setAttended(event.target.value);
+    };
+
+    const handleAge = (event) => {
+        setAgeLimit(event.target.value);
+    };
+
+    const handleHeardBefore = (event) => {
+        setHeardBefore(event.target.value);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const sendEmail = (event) => {
+        event.preventDefault();
+
+        emailjs.sendForm(process.env.envVar.REACT_APP_SERVICE_ID, process.env.envVar.REACT_APP_TEMPLATE_ID, event.target, process.env.envVar.REACT_APP_USER_ID)
+            .then((result) => {
+                console.log(result.text);
+                setFormMessage('Message sent, thank you for your interest');
+            }, (error) => {
+                console.log(error.text);
+                setFormMessage('Something went wrong, try again');
+            });
+    };
+
     return (
         <FadeIn>
             <Box mb={2}>
@@ -10,15 +99,117 @@ const SignUp = () => {
             </Box>
             <Typography variant="body1">We appreciate you taking interest in learning about the world of wines.</Typography>
             <Typography variant="body1">Your door to knowledge and community is just a small sign-up away!</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis lorem arcu, vitae mollis justo eleifend eu. Praesent lacinia non quam vel tempor. Praesent interdum sollicitudin felis quis consequat. Aenean eget nunc porttitor, convallis diam in, aliquam tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ligula tellus, laoreet quis semper non, sagittis ac neque. Donec ultrices commodo dapibus. Proin rhoncus massa eget sapien malesuada maximus. Sed aliquet quam ac tortor congue blandit. Vestibulum lobortis augue eget tortor pulvinar dapibus. Aliquam sapien risus, vestibulum nec blandit eu, semper fringilla augue. Suspendisse vel posuere nisl. Sed convallis felis vitae arcu luctus, vitae lacinia urna euismod. Ut tempor, augue in aliquet ornare, felis purus posuere sem, quis lobortis turpis nulla eu urna. Duis nibh metus, pellentesque nec nisi at, dictum iaculis sem. Donec eu mi porta ipsum suscipit laoreet feugiat et ex.
-
-                Pellentesque nec tempor nibh. Nullam faucibus arcu dui, in efficitur leo pellentesque id. Suspendisse id ornare tortor, id mollis nunc. Vestibulum in sapien in metus pretium blandit ut id massa. Duis a erat pharetra, malesuada nisl ac, rhoncus magna. Fusce at fermentum nunc. Vivamus euismod dolor at enim fermentum, id posuere neque dictum. Cras eget condimentum erat.
-
-                Etiam posuere fringilla lorem, non molestie neque cursus ut. Fusce scelerisque nec elit eget varius. Nunc ornare vehicula neque a luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec lobortis massa quam, eget lobortis turpis finibus vitae. Phasellus porta mi a tristique dictum. Nulla ut ornare massa, quis blandit libero. Aenean hendrerit massa ac sagittis auctor. Vestibulum pellentesque, mauris ac mattis maximus, lacus justo feugiat justo, ut rhoncus dui metus id elit.
-
-                Curabitur ac odio augue. Proin at sodales ante, vel ornare justo. Donec interdum fringilla augue et aliquam. Aenean ultrices elit nec posuere aliquet. Aenean eu semper justo. Integer cursus laoreet laoreet. Maecenas luctus nisi tincidunt leo tempus, nec gravida nibh posuere. Vestibulum placerat tempor turpis, eget facilisis tortor euismod sit amet. Aenean eget finibus sem, et tristique arcu. Donec quis elit purus. Pellentesque ac lorem mollis, luctus magna nec, condimentum purus.
-
-                Nullam sit amet est est. Duis ante magna, posuere rhoncus tortor vitae, dignissim iaculis lacus. Fusce sem nunc, dictum faucibus risus et, pretium hendrerit erat. In diam leo, posuere et leo sed, bibendum dignissim eros. Aenean sagittis, mi sit amet blandit placerat, lectus urna bibendum metus, non laoreet arcu ex ac ante. Praesent tincidunt libero non neque maximus, vitae dictum erat volutpat. Ut metus velit, porttitor at congue at, viverra in mauris. Cras eget faucibus urna. Aliquam eleifend elit at sollicitudin fringilla. Nam in scelerisque eros. Nulla faucibus, ligula eu tristique iaculis, arcu enim convallis enim, sed consequat ex eros at risus. Nam arcu erat, rhoncus sit amet sagittis ac, facilisis a est. Integer ut pretium ipsum, quis pulvinar libero.</Typography>
+            <form
+                className={classes.form}
+                onSubmit={sendEmail}
+            >
+                <input type="hidden" name="contact_number" />
+                <FormLabel component="legend" className={classes.label}>Are you 18 years old or above?</FormLabel>
+                <RadioGroup
+                    name="age"
+                    value={ageLimit}
+                    onChange={handleAge}
+                >
+                    <FormControlLabel
+                        value="Yes"
+                        control={<Radio className={classes.radio} />}
+                        label="Yes"
+                    />
+                    <FormControlLabel
+                        value="No"
+                        control={<Radio className={classes.radio} />}
+                        label="No"
+                    />
+                </RadioGroup>
+                <TextField
+                    className={classes.input}
+                    id="standard-basic"
+                    label="Name"
+                    name="name"
+                    required
+                    InputProps={{
+                        style: { color: '#fff' },
+                        disableUnderline: true
+                    }}
+                    InputLabelProps={{
+                        style: { color: '#fff' },
+                    }}
+                />
+                <TextField
+                    className={classes.input}
+                    id="standard-basic"
+                    label="E-mail"
+                    required
+                    name="email"
+                    InputProps={{
+                        style: { color: '#fff' },
+                        disableUnderline: true
+                    }}
+                    InputLabelProps={{
+                        style: { color: '#fff' },
+                    }}
+                />
+                <TextField
+                    className={classes.input}
+                    id="standard-basic"
+                    label="Phone"
+                    name="phone"
+                    required
+                    InputProps={{
+                        style: { color: '#fff' },
+                        disableUnderline: true
+                    }}
+                    InputLabelProps={{
+                        style: { color: '#fff' },
+                    }}
+                />
+                <InputLabel id="demo-controlled-open-select-label" className={classes.label}>Where did you hear about Wine for All?</InputLabel>
+                <Select
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
+                    name="heard"
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
+                    value={heardBefore}
+                    onChange={handleHeardBefore}
+                    className={classes.select}
+                    placeholder="Lol"
+                >
+                    <MenuItem value={'From a friend'}>From a friend</MenuItem>
+                    <MenuItem value={'Facebook'}>Facebook</MenuItem>
+                    <MenuItem value={'Instagram'}>Instagram</MenuItem>
+                    <MenuItem value={'Google'}>Google</MenuItem>
+                    <MenuItem value={'Poster at UKH'}>Poster at UKH</MenuItem>
+                </Select>
+                <FormLabel component="legend" className={classes.label}>Have you attended a Wine for All workshop before?</FormLabel>
+                <RadioGroup
+                    aria-label="gender"
+                    name="attended"
+                    value={attend}
+                    onChange={handleAttend}
+                >
+                    <FormControlLabel
+                        value="Yes"
+                        control={<Radio className={classes.radio} />}
+                        label="Yes"
+                    />
+                    <FormControlLabel
+                        value="No"
+                        control={<Radio className={classes.radio} />}
+                        label="No"
+                    />
+                </RadioGroup>
+                <Button
+                    type="submit"
+                    className={classes.button}
+                >
+                    Send
+                </Button>
+            </form>
+            <Box className={classes.message}>
+                {formMessage}
+            </Box>
         </FadeIn>
     )
 }
