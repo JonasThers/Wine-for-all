@@ -1,4 +1,4 @@
-<h2>Wine tasting cph</h2>
+<h2>Wine For All</h2>
 
 <p>Currently a work in progress</p>
 
