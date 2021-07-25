@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, makeStyles, FormLabel, RadioGroup, FormControlLabel, Radio, MenuItem, Select, InputLabel, Button } from '@material-ui/core';
 import FadeIn from 'react-fade-in';
 import emailjs from 'emailjs-com';
+import { useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -57,7 +58,12 @@ const SignUp = () => {
     const [ageLimit, setAgeLimit] = useState('');
     const [open, setOpen] = useState(false);
     const [heardBefore, setHeardBefore] = useState('');
-    const [formMessage, setFormMessage] = useState('')
+    const [formMessage, setFormMessage] = useState('');
+    const [values, setValues] = useState({
+        title: "",
+        email: "",
+        message: "",
+      });
 
     const handleAttend = (event) => {
         setAttended(event.target.value);
@@ -79,7 +85,9 @@ const SignUp = () => {
         setOpen(true);
     };
 
-    const sendEmail = (event) => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const sendEmail = (data, event) => {
         event.preventDefault();
 
         emailjs.sendForm(process.env.envVar.REACT_APP_SERVICE_ID, process.env.envVar.REACT_APP_TEMPLATE_ID, event.target, process.env.envVar.REACT_APP_USER_ID)
@@ -101,7 +109,7 @@ const SignUp = () => {
             <Typography variant="body1">Your door to knowledge and community is just a small sign-up away!</Typography>
             <form
                 className={classes.form}
-                onSubmit={sendEmail}
+                onSubmit={handleSubmit(sendEmail)}
             >
                 <input type="hidden" name="contact_number" />
                 <FormLabel component="legend" className={classes.label}>Are you 18 years old or above?</FormLabel>
@@ -124,9 +132,9 @@ const SignUp = () => {
                 <TextField
                     className={classes.input}
                     id="standard-basic"
-                    label="Name"
+                    label="Name*"
                     name="name"
-                    required
+                    {...register("nameRequired", { required: true })}
                     InputProps={{
                         style: { color: '#fff' },
                         disableUnderline: true
@@ -135,12 +143,17 @@ const SignUp = () => {
                         style: { color: '#fff' },
                     }}
                 />
+                {errors.nameRequired && <span>This field is required</span>}
                 <TextField
                     className={classes.input}
                     id="standard-basic"
-                    label="E-mail"
-                    required
+                    label="E-mail*"
                     name="email"
+                    {...register("emailRequired", { 
+                        required: true, 
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      }, })}
                     InputProps={{
                         style: { color: '#fff' },
                         disableUnderline: true
@@ -149,12 +162,13 @@ const SignUp = () => {
                         style: { color: '#fff' },
                     }}
                 />
+                {errors.emailRequired && <span>Valid email is required</span>}
                 <TextField
                     className={classes.input}
                     id="standard-basic"
-                    label="Phone"
+                    label="Phone*"
                     name="phone"
-                    required
+                    {...register("phoneRequired", { required: true })}
                     InputProps={{
                         style: { color: '#fff' },
                         disableUnderline: true
@@ -163,6 +177,7 @@ const SignUp = () => {
                         style: { color: '#fff' },
                     }}
                 />
+                {errors.phoneRequired && <span>Valid phone number is required</span>}
                 <InputLabel id="demo-controlled-open-select-label" className={classes.label}>Where did you hear about Wine for All?</InputLabel>
                 <Select
                     labelId="demo-controlled-open-select-label"
